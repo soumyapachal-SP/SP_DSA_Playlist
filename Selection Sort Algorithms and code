@@ -1,0 +1,175 @@
+Selection Sort in c++
+#include<bits/stdc++.h>
+
+using namespace std;
+void selection_sort(int arr[], int n) {
+  // selection sort
+  for (int i = 0; i < n - 1; i++) {
+    int mini = i;
+    for (int j = i + 1; j < n; j++) {
+      if (arr[j] < arr[mini]) {
+        mini = j;
+      }
+    }
+    int temp = arr[mini];
+    arr[mini] = arr[i];
+    arr[i] = temp;
+  }
+
+  cout << "After selection sort: " << "\n";
+  for (int i = 0; i < n; i++) {
+    cout << arr[i] << " ";
+  }
+  cout << "\n";
+
+}
+int main() {
+  int arr[] = {13,46,24,52,20,9};
+  int n = sizeof(arr) / sizeof(arr[0]);
+   cout << "Before selection sort: " << "\n";
+   for (int i = 0; i < n; i++) {
+    cout << arr[i] << " ";
+  }
+  cout << "\n";
+  selection_sort(arr, n);
+  return 0;
+}
+
+
+Selction Sort in java
+import java.util.*;
+
+public class tUf {
+    static void selection_sort(int arr[], int n) {
+        for (int i = 0; i < n - 1; i++) {
+            int mini = i;
+            for (int j = i + 1; j < n; j++) {
+                if (arr[j] < arr[mini]) {
+                    mini = j;
+                }
+            }
+            //swap
+            int temp = arr[mini];
+            arr[mini] = arr[i];
+            arr[i] = temp;
+        }
+
+        System.out.println("After selection sort:");
+        for (int i = 0; i < n; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String args[]) {
+
+        int arr[] = {13, 46, 24, 52, 20, 9};
+        int n = arr.length;
+        System.out.println("Before selection sort:");
+        for (int i = 0; i < n; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+        selection_sort(arr, n);
+    }
+}
+
+Alternative 
+import java.util.Scanner;
+import java.util.Arrays;
+public class SelectionSort {
+    // Selection Sort
+    public static void main(String []args){
+        // Creating Scanner Object for taking Inputs from the USER
+        Scanner sc = new Scanner(System.in);
+        // Take SIZE of 1D Array from the USER
+        System.out.print(" Enter SIZE of 1D Array: ");
+        int n = sc.nextInt();
+        // Creating Array of Required SIZE
+        int [] arr = new int[n];
+        // Fill the Array by taking inputs from the USER
+        System.out.print(" Enter " + n + " Elements: ");
+        for(int i=0; i<arr.length; i++)
+            arr[i] = sc.nextInt();
+        // Display the Input Array Before Sorting
+        System.out.println(" Array Before Sorting is: " + Arrays.toString(arr));
+        // Apply Selection Sort
+        selectionSort(arr);
+        // Display resultant Array (i.e Sorted Array) After Sorting
+        System.out.println(" Array After Sorting is: " + Arrays.toString(arr));
+    }
+    // Method of Selection Sort
+    static void selectionSort(int [] arr){
+        for(int i=0; i<arr.length; i++){
+            // Find the Maximum Index in the Remaining array and Swap with its correct index
+            int last = arr.length - i - 1;
+            int maxIndex = getMaxIndex(arr, 0, last);
+            swap(arr, maxIndex, last);
+        }
+    }
+
+    static void swap(int [] arr, int a , int b){
+        int temp = arr[a];
+        arr[a]   = arr[b];
+        arr[b]   = temp;
+    }
+
+    static int getMaxIndex(int [] arr, int start, int end){
+        int max = start;
+        for(int i = start; i <= end; i++){
+            if(arr[max] < arr[i])
+                max = i;
+        }
+        return max;
+    }
+}
+
+
+Code in C
+#include <stdio.h>
+ 
+void swap(int *xp, int *yp)
+{
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+ 
+void selectionSort(int arr[], int n)
+{
+    int i, j, min_idx;
+ 
+    // One by one move boundary of unsorted subarray
+    for (i = 0; i < n-1; i++)
+    {
+        // Find the minimum element in unsorted array
+        min_idx = i;
+        for (j = i+1; j < n; j++)
+          if (arr[j] < arr[min_idx])
+            min_idx = j;
+ 
+        // Swap the found minimum element with the first element
+           if(min_idx != i)
+            swap(&arr[min_idx], &arr[i]);
+    }
+}
+ 
+/* Function to print an array */
+void printArray(int arr[], int size)
+{
+    int i;
+    for (i=0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
+ 
+// Driver program to test above functions
+int main()
+{
+    int arr[] = {64, 25, 12, 22, 11};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    selectionSort(arr, n);
+    printf("Sorted array: \n");
+    printArray(arr, n);
+    return 0;
+}
